@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="test"  namespace="/" extends="vtshplatform" >
+		<!--跳转到首页的action-->
+		<action name="index" >
+			<result name="success">/WEB-INF/index/index.jsp</result>
+		</action>	
+		<action name="test" class="testJson">
+			<result name="success" type="json" >
+				<param name="root">transInfs</param>
+			</result>
+		</action>
+		<action name="account" class="accountAction">
+			<result name="success" type="json" >
+				<param name="root">acnt</param>
+			</result>
+		</action>
+		<action name="transInf">
+			<result name="success">/WEB-INF/trans/transInf.jsp
+			</result>
+		</action>
+		<action name="tranSearch" class="transactionSearchAction">
+			<result name="success" type="json" >
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="acntInf">
+			<result name="success">/WEB-INF/acnt/account.jsp
+			</result>
+		</action>
+		<action name="toAddMerchant" class="toAddMerchantAction">
+			<result name="success">/WEB-INF/acnt/addmerchant.jsp
+			</result>
+		</action>
+		<action name="addMerchant" class="addMerchantAction">
+			<result name="success" type="json">
+				<param name="root">ok</param>
+			</result>
+		</action>
+		<action name="updateMerchant" class="updateMerchantAction">
+			<result name="success" type="json" >
+				<param name="root">flag</param>
+			</result>
+		</action>
+		<action name="deleteMerchant" class="deleteMerchantAction">
+			<result name="success" type="json" >
+				<param name="root">flag</param>
+			</result>
+		</action>
+			<action name="getNations" class="getNationsAction">
+			<result name="success" type="json" >
+				<param name="root">tbl</param>
+			</result>
+		</action>
+		<action name="getData" class="getDataAction">
+			<result name="success" type="json" >
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="payCont" class="paychannelContentAction">
+			<result name="success" type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="toLogin">
+			<result name="success" >
+				/WEB-INF/login/userlogin.jsp
+			</result>
+		</action>
+		<!-- validation code -->
+		<action name="image" method="execute" class="imageAction">
+			<interceptor-ref name="defaultStack" ></interceptor-ref>
+			<result name="success" type="stream">
+				<param name="inputName">imageStream</param>	
+			</result>
+		</action>
+		<!-- validation code validate -->
+		<action name="validateCheckCode" class="validateCheckCodeAction">
+			<interceptor-ref name="defaultStack" ></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">checkPassed</param>
+			</result>
+		</action>
+		<!-- login -->
+		<action name="login" class="loginAction">
+			<interceptor-ref name="defaultStack" ></interceptor-ref>
+			<result name="success" type="redirect">index.jsp
+			</result>
+			<result name="error" >/WEB-INF/login/userlogin.jsp
+			</result>
+		</action>
+		<action name="logout" class="logoutAction">
+			<result name="success">/WEB-INF/login/userlogin.jsp
+			</result>
+		</action>
+		<!-- 跳转到统计信息页面 -->
+		<action name="toTxnClearing">
+			<result name="success">/WEB-INF/clear/txnclear.jsp
+			</result>
+		</action>
+		<action name="merchantClearing" class="merchantClearingAction">
+			<result name="success" type="json">
+				<param name="root">clearInf</param>
+			</result>
+		</action>
+		<action name="csv" class="csvAction">
+		</action>
+		
+		<!-- 跳转到对账信息页面 -->
+		<action name="toRecon">
+			<result name="success">/WEB-INF/recon/recon.jsp
+			</result>
+		</action>
+		<action name="reconciliation" class="reconciliationAction">
+			<result name="success" type="json">
+				<param name="root">reconInf</param>
+			</result>
+		</action>
+		<action name="reconCSV" class="reconCSVAction">
+		</action>
+		<action name="existUser" class="existUserAction">
+			<result name="success" type="json" >
+				<param name="root">ok</param>
+			</result>
+		</action>
+		<!-- 跳转到注册商户的需求action -->
+		<action name="registMerchant">
+			<result name="success">/WEB-INF/acnt/registmerchant.jsp
+			</result>
+		</action>
+		<action name="upgradingMerchant">
+			<result name="success">/WEB-INF/acnt/upgradingmerchant.jsp
+			</result>
+		</action>
+		<action name="declineMerchant">
+			<result name="success">/WEB-INF/acnt/declinedmerchant.jsp
+			</result>
+		</action>
+		<action name="toRegistMerchant" class="toRegistMerchantAction">
+			<result name="success" type="json">
+				<param name="root">regt</param>
+			</result>
+		</action>
+		<action name="toUpgradingMerchant" class="toUpgradingMerchantAction">
+			<result name="success" type="json">
+				<param name="root">regt</param>
+			</result>
+		</action>
+		<action name="toDeclineMerchant" class="toDeclineMerchantAction">
+			<result name="success" type="json">
+				<param name="root">regt</param>
+			</result>
+		</action>
+		
+		<action name="createNewMerchant" class="createNewMerchantAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="regStatus" class="regStatusAction">
+			<result name="success" type="json">
+				<param name="root">flag</param>
+			</result>
+		</action>
+	</package>
+</struts>

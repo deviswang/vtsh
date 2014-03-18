@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<beans xmlns="http://www.springframework.org/schema/beans" -->
+<!--		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--		xmlns:tx="http://www.springframework.org/schema/tx" -->
+<!--		xmlns:aop="http://www.springframework.org/schema/aop"-->
+<!--		xmlns:context="http://www.springframework.org/schema/context" -->
+<!--		xmlns:jee="http://www.springframework.org/schema/jee"-->
+<!--		xmlns:mongo="http://www.springframework.org/schema/data/mongo"    -->
+<!--		xsi:schemaLocation="-->
+<!--		http://www.springframework.org/schema/data/mongo     -->
+<!--        http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd   -->
+<!--	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd-->
+<!--		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd-->
+<!--		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd-->
+<!--		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd-->
+<!--		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">-->
+
+	<beans xmlns="http://www.springframework.org/schema/beans"    
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+          xmlns:context="http://www.springframework.org/schema/context"    
+          xmlns:mongo="http://www.springframework.org/schema/data/mongo"    
+          xsi:schemaLocation="             
+          http://www.springframework.org/schema/data/mongo     
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd     
+          http://www.springframework.org/schema/beans     
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">   
+          
+	  <mongo:mongo host="115.28.142.180" port="27017" />      
+       <bean id="mongoTemplate" class="org.springframework.data.document.mongodb.MongoTemplate">     
+        <constructor-arg ref="mongo"/>     
+        <constructor-arg name="databaseName" value="testdb"/>  
+        <property name="username" value="test"/>
+     	<property  name="password" value="test"/>   
+<!--        <constructor-arg name="defaultCollectionName" value="person" />     -->
+      </bean>     
+	<!-- 注册 -->
+	 <mongo:mapping-converter base-package="com.cardinfolink.vtsh.pojo" />
+  	 <context:annotation-config />
+  	 
+	<bean id="vtMerchantDao" scope="prototype"
+		class="com.cardinfolink.vtsh.springdao.VtMerchantImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property> 
+	</bean>
+	<bean id="merchantDao" scope="prototype"
+		class="com.cardinfolink.vtsh.dao.MerchantImpl">
+	</bean>
+	<bean id="testJson" class="com.cardinfolink.vtsh.action.TestJsonAction">
+	</bean>
+	<bean id="accountAction" class="com.cardinfolink.vtsh.action.AccountAction">
+	</bean>
+	<bean id="toAddMerchantAction" class="com.cardinfolink.vtsh.action.ToAddMerchantAction">
+	</bean>
+	<bean id="addMerchantAction" class="com.cardinfolink.vtsh.action.AddMerchantAction">
+	</bean>
+	<bean id="updateMerchantAction" class="com.cardinfolink.vtsh.action.UpdateMerchantAction">
+	</bean>
+	<bean id="deleteMerchantAction" class="com.cardinfolink.vtsh.action.DeleteMerchantAction">
+	</bean>
+	<bean id="transactionSearchAction" class="com.cardinfolink.vtsh.action.TransactionSearchAction">
+	</bean>
+	<bean id="getNationsAction" class="com.cardinfolink.vtsh.action.GetNationsAction">
+	</bean>
+	<bean id="getDataAction" class="com.cardinfolink.vtsh.action.GetDataAction">
+	</bean>
+	<bean id="paychannelContentAction" class="com.cardinfolink.vtsh.action.PaychannelContentAction">
+	</bean>
+	<bean id="imageAction" scope="prototype"
+		class="com.cardinfolink.vtsh.validationcode.ImageAction">
+	</bean>
+	<bean id="validateCheckCodeAction" scope="prototype"
+		class="com.cardinfolink.vtsh.validationcode.ValidateCheckCodeAction">
+	</bean>
+	<bean id="userControlInterceptor" scope="prototype"
+		class="com.cardinfolink.vtsh.interceptor.UserControlInterceptor">
+	</bean>
+	<bean id="loginAction" scope="prototype"
+		class="com.cardinfolink.vtsh.login.LoginAction">
+	</bean>
+	<bean id="logoutAction" scope="prototype"
+		class="com.cardinfolink.vtsh.login.LogoutAction">
+	</bean>
+	<bean id="merchantClearingAction" class="com.cardinfolink.vtsh.action.MerchantClearingAction">
+	</bean>
+	<bean id="csvAction" class="com.cardinfolink.vtsh.action.CSVAction">
+	</bean>
+	<bean id="reconciliationAction" class="com.cardinfolink.vtsh.action.ReconciliationAction">
+	</bean>
+	<bean id="reconCSVAction" class="com.cardinfolink.vtsh.action.ReconCSVAction">
+	</bean>
+	<bean id="existUserAction" class="com.cardinfolink.vtsh.action.ExistUserAction">
+	</bean>
+	
+	<bean id="toRegistMerchantAction" class="com.cardinfolink.vtsh.action.ToRegistMerchantAction"></bean>
+	<bean id="toUpgradingMerchantAction" class="com.cardinfolink.vtsh.action.ToUpgradingMerchantAction"></bean>
+	<bean id="toDeclineMerchantAction" class="com.cardinfolink.vtsh.action.ToDeclineMerchantAction"></bean>
+	
+	<bean id="createNewMerchantAction" class="com.cardinfolink.vtsh.action.CreateNewMerchantAction"> 
+		<property name="vmd" ref="vtMerchantDao"></property>
+		<property name="vmdao" ref="vtMidDao"></property>
+		<property name="vsp" ref="vtServPriceDao"></property>
+	</bean>
+	<bean id="vtMidDao" class="com.cardinfolink.vtsh.springdao.VtMidImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="vtServPriceDao" class="com.cardinfolink.vtsh.springdao.VtServPriceImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="regStatusAction" class="com.cardinfolink.vtsh.action.RegStatusAction">
+		<property name="md" ref="merchantDao"></property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<include file="struts-test.xml"></include>
+
+	<!-- 公共包 -->
+	<package name="vtshplatform"  extends="json-default" >
+		<interceptors>
+			<interceptor name="userControl" class="userControlInterceptor">
+			</interceptor>
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="userControl"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 配置默认的拦截器 -->
+		<default-interceptor-ref name="mydefault"></default-interceptor-ref>
+		<global-results>
+			<result name="home">
+				/WEB-INF/login/userlogin.jsp
+			</result>
+		</global-results>
+		
+		
+	</package>
+	
+</struts>

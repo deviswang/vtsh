@@ -1,0 +1,128 @@
+* {margin: 0; padding: 0; clear:both;}
+body {
+	 margin: 0px auto; color: rgb(83, 83, 83); line-height: 150%; font-family:Arial, Helvetica, sans-serif; font-size: 12px; background:#ffff;
+}
+
+
+ul {
+	list-style: none; margin: 0px; padding: 0px;
+}
+li {
+	list-style: none; margin: 0px; padding: 0px;
+}
+dl {
+	list-style: none; margin: 0px; padding: 0px;
+}
+dt {
+	list-style: none; margin: 0px; padding: 0px;
+}
+dd {
+	list-style: none; margin: 0px; padding: 0px;
+}
+
+ul li { list-style:none;}
+a {text-decoration: none;}
+
+img {
+	border: 0px currentColor;
+	border:none;
+}
+
+
+.wap{
+	width:100%;
+	height:aotu;
+	overflow:hidden;
+	background:#009cc7;
+	}
+header{
+	width:100%;
+	height:50px;
+	background:#333;
+	border-bottom:solid 2px #ea5413;
+	padding:5px;}
+
+.content{
+	margin:0 auto;
+	width:100%;
+	height:551px;;
+	max-width:1024px;
+	background:url(../img/bg.JPG) no-repeat;}
+.content p{
+	font-size:2.5em;
+	line-height:1.2em;
+	color:#fff;}
+.content ul{
+	margin:0 auto;
+	width:50%;
+	height:auto;
+	padding-top:50px;
+	}
+.content ul li{margin:0 auto;
+text-align: center;
+margin-bottom:50px;
+}
+
+.TBbar{
+	width:80%;
+	height:250px;
+	background:rgba(255, 255, 255, 0.2);
+	padding-top:50px;
+	border-radius:8px;
+	min-width:275px;
+	
+	
+	}
+	
+.txt{
+	border:1px #ccc solid;
+	font-family:Arial, Helvetica, sans-serif;
+	height:20px;
+	width:170px;
+	border-radius:5px;
+	background:#fff;
+	padding:5px;}
+
+.txt:focus{
+	border-color:#ea5413;}
+.content ul li table span img{
+	margin-left:-25px;
+	margin-bottom:-5px;}
+
+footer{
+	background:#333;
+	width:100%;
+	height:120px;
+	padding-top:50px;
+	
+	text-align:center;}
+footer p{color:#999;
+font-size:1em;}
+footer a{
+	color:#999;
+	text-decoration:underline;}
+	
+@media screen and (max-width:535px){
+	
+	.logoTxt{
+		display:hidden;}
+	.tablePic{
+		display:hidden;}
+	table img{
+		width:100%;}
+	
+	.content ul li table span img{
+	margin-left:0px;}
+	.TBbar{
+		width:100%;
+		min-width:200px;}
+	.content p{
+	font-size:1.5em;}
+	}
+@media screen and (max-width:425px){
+	.logoTxt img{
+		display:none;}
+	.content p{
+	font-size:1.2em;}
+	}
+	}
